@@ -50,6 +50,7 @@ const db = require("./models");
 //     })
 // })
 
+// THIS COULD BE ALTERED TO WORK WITH MOVIE FAVES TO DISPLAY AN INDIVIDUAL USER'S FAVES
 // db.user.findOne().then((foundUser) => {
 //     foundUser.getPets().then((foundPets) => {
 //         console.log(foundPets)
@@ -73,16 +74,47 @@ const db = require("./models");
 //     console.log(herc)
 // })
 
-db.pet.findOne({
+// db.pet.findOne({
+//     where: {
+//         name: 'Hercules'
+//     }
+// }).then((herc) => {
+//     // This will result in a race conflict because 83 will run before 82 finishes
+//     // const user = db.user.findOne()
+//     // herc.addUser(user)
+//     db.user.findOne().then((foundUser) => {
+//         herc.setUser(foundUser)
+//     })
+// })
+
+// db.toy.create({
+//     type: 'squeaky',
+//     color: 'red'
+// })
+
+// db.pet.findOne({
+//     where: {
+//         name: 'Violet'
+//     }
+// }).then((violet) => {
+//     console.log(violet);
+//     db.toy.findOne({
+//         where: {
+//             color: 'red'
+//         }
+//     }).then((foundToy) => {
+//         console.log(foundToy);
+//         violet.addToy(foundToy)
+//     })
+// })
+
+db.toy.findOne({
     where: {
-        name: 'Hercules'
+        color: 'red'
     }
-}).then((herc) => {
-    // This will result in a race conflict because 83 will run before 82 finishes
-    // const user = db.user.findOne()
-    // herc.addUser(user)
-    db.user.findOne().then((foundUser) => {
-        herc.setUser(foundUser)
+}).then(foundToy => {
+    foundToy.getPets().then((pets) => {
+        console.log(pets)
     })
 })
 
